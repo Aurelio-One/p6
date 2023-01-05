@@ -1,10 +1,17 @@
 @import url("photographer.css");
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
 
 header {
     display: flex;
@@ -85,9 +92,11 @@ h1 {
         grid-template-columns: 1fr 1fr;
         gap: 50px;
     }
+
     header {
         padding: 20px 40px;
     }
+
     header h1, header .logo {
         margin: 0;
     }
