@@ -3,6 +3,8 @@
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/photographer.css" rel="stylesheet" type="text/css">
+  <link href="css/lightbox.css" rel="stylesheet" type="text/css">
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -16,13 +18,23 @@
     </a>
   </header>
   <main id="main">
+    <!-- PHOTOGRAPHER HEADER -->
     <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <div>
+        <h1></h1>
+        <div></div>
+        <span></span>
+      </div>
+      <button class="contact_button" onclick="displayModal()">
+        Contactez-moi
+      </button>
+      <img class="photographer-image">
     </div>
-    <div class="photograph-medias">
-    </div>
+    <!-- PHOTOGRAPHER MEDIAS -->
+    <div class="photograph-medias"></div>
   </main>
-  <div id="contact_modal">
+  <!-- CONTACT MODAL -->
+  <div id="contact_modal" role=”dialog” aria-hidden="true">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
@@ -37,10 +49,29 @@
       </form>
     </div>
   </div>
-  <script src="scripts/factories/media.js"></script>
-  <script src="scripts/factories/photographer.js"></script>
-  <script src="/scripts/pages/photographer.js"></script>
-  <script src="/scripts/utils/contactForm.js"></script>
+
+  <!-- CAROUSEL -->
+  <div class="carousel" role="group" aria-roledescription="carousel" aria-label="image closeup view" aria-hidden="true"
+    data-carousel>
+    <div class="carousel-buttons">
+      <button class="carousel-button carousel-button_close" aria-label="Close dialog" onclick="closeLightbox()">
+        <img src="assets/icons/close-red.svg">
+      </button>
+      <button class="carousel-button carousel-button_previous" aria-label="Previous image"
+        data-carousel-button-previous>
+        <img src="assets/icons/previous.png" alt="Previous image" height="48">
+      </button>
+      <button class="carousel-button carousel-button_next" aria-label="Next image" data-carousel-button-next>
+        <img src="assets/icons/next.png" alt="Next image" height="48">
+      </button>
+    </div>
+    <div class="slides" aria-live="polite" data-carousel-slides-container>
+    </div>
+  </div>
+  <script type="text/javascript" src="scripts/factories/media.js"></script>
+  <script type="text/javascript" src="/scripts/pages/photographer.js"></script>
+  <script type="text/javascript" src="/scripts/utils/contactForm.js"></script>
+  <script type="text/javascript" src="/scripts/utils/lightbox.js"></script>
 </body>
 
 </html>

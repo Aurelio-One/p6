@@ -1,22 +1,37 @@
 async function getPhotographers() {
-  return fetch("data/photographers.json")
-    .then((res) => res.json())
-    .then((res) => res.photographers)
-    .catch((err) => console.log("an error occurs", err));
+  try {
+    const res = await fetch('data/photographers.json')
+    const jsonRes = await res.json()
+    return jsonRes.photographers
+  } catch (err) {
+    console.error(err)
+    throw err
+  }
 }
 
-async function displayData(photographers) {
-  const photographersSection = document.querySelector(".photographer_section");
+/**
+ * @function displayData {
+ * @param photographers
+ * Display the photographers data using photographerFactory
+ */
+async function displayPhotographers(photographers) {
+  const photographersSection = document.querySelector('.photographer_section')
 
   photographers.forEach((photographer) => {
-    const photographerModel = photographerFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
-    photographersSection.appendChild(userCardDOM);
-  });
+    const photographerModel = photographerFactory(photographer)
+    const userCardDOM = photographerModel.getUserCardDOM()
+    photographersSection.appendChild(userCardDOM)
+  })
 }
+
+/**
+ * @function init {
+ * run displayPhotographers
+ */
 
 async function init() {
-  displayData(await getPhotographers());
+  const photographers = await getPhotographers()
+  displayPhotographers(photographers)
 }
 
-init();
+init()
