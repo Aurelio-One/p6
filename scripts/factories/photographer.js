@@ -1,27 +1,41 @@
-function photographerFactory(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
-  const picture = `assets/photographers/${portrait}`;
-  /**
-   * @function getUserCardDOM
-   * Build a photographer component on the landing page
-   */
-  function getUserCardDOM() {
-    const article = document.createElement('article');
-    article.innerHTML += `
-    <a href='photographer.html?id=${id}'>
-      <img 
-        src='${picture}' 
-        alt='Photo de ${name}' 
-        class='photographer-image'
-      >
-      <h2 aria-label='Nom: ${name}'>${name}</h2>
-    </a>
-    <h3 aria-label='Lieu: ${city}, ${country}'>${city}, ${country}</h3>
-    <h4 aria-label='Phrase:  ${tagline}'>${tagline}</h4>
-    <h5 aria-label='Prix: ${price}€/jour'>${price}€/jour</h5>
-    `;
-
-    return article;
+class Photographer {
+  constructor(name, id, city, country, tags, tagline, price, portrait) {
+    this.name = name;
+    this.id = id;
+    this.city = city;
+    this.country = country;
+    this.tags = tags;
+    this.tagline = tagline;
+    this.price = price;
+    this.portrait = portrait;
   }
-  return { getUserCardDOM };
+  /**
+   * @name createPhotographer
+   * @returns a photographer component
+   */
+  createPhotographer() {
+    return `
+    <article>
+      <a href='photographer.html?id=${this.id}'>
+        <img 
+          src='assets/photographers/${this.portrait}'
+          alt='Photo de ${this.name}' 
+          class='photographer-image'
+        >
+        <h2 aria-label='Nom: ${this.name}'>${this.name}</h2>
+      </a>
+      <h3 aria-label='Lieu: ${this.city}, ${this.country}'>${this.city}, ${this.country}</h3>
+      <h4 aria-label='Phrase:  ${this.tagline}'>${this.tagline}</h4>
+      <h5 aria-label='Prix: ${this.price}€/jour'>${this.price}€/jour</h5>
+    </article>
+    `;
+  }
+
+  /**
+   * @name getFolderName
+   * @returns the photos folder name for each photographer
+   */
+  getFolderName() {
+    return this.name.toLowerCase().replace(" ", "");
+  }
 }
