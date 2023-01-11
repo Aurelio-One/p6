@@ -73,7 +73,7 @@
     grid-row-gap: 30px;
 }
 
-.photograph-medias article {
+.photograph-medias article .media,  .photograph-medias article .media-infos i {
     cursor: pointer;
 }
 
@@ -178,7 +178,7 @@ form .contact_button {
     position: fixed;
     bottom: 0;
     right: 30px;
-    padding: 0 30px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;

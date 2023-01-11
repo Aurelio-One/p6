@@ -31,11 +31,12 @@ async function showInfo(userId) {
   const div = document.querySelector(".photograph-header > div > div");
   const span = document.querySelector(".photograph-header > div > span");
   const img = document.querySelector(".photograph-header > img");
-  const likesContainer = document.querySelector(".sticky .total-likes");
+  const likesContainer = document.querySelector(".sticky .total-likes span");
   const priceContainer = document.querySelector(
     ".sticky .price-container .price"
   );
-
+  // change the name of the page
+  document.title = `Fisheye - ${name}`;
   // add the name to the modal title
   modalHeaderTitle.textContent += "\n" + name;
   // add photographer infos and picture to the header
@@ -48,9 +49,8 @@ async function showInfo(userId) {
   span.textContent = `${tagline}`;
   img.setAttribute("src", `assets/photographers/${portrait}`);
   img.setAttribute("alt", `Photo de ${name}`);
-
   // add the total likes number
-  likesContainer.prepend(likesCount);
+  likesContainer.textContent = likesCount;
   priceContainer.textContent = `${price}€/jour`;
 }
 
@@ -130,11 +130,48 @@ async function getLikes(userId) {
 }
 
 /**
+ * @function handlLikes
+ * show the photographer medias when the data is ready
+ */
+function handleLikes(mediaId) {
+  // get elements
+  const totalLikesCounterContainer = document.querySelector(
+    ".sticky .total-likes>span"
+  );
+  const likesCounterContainer = document.querySelector(
+    `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>span`
+  );
+  const likesCounterIcon = document.querySelector(
+    `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>i`
+  );
+  // get values
+  let totalLikesCounter = parseInt(totalLikesCounterContainer.textContent);
+  let likesCounter = parseInt(likesCounterContainer.textContent);
+
+  // add or remove a like
+  if (likesCounterIcon.classList.contains("far")) {
+    // add a like to the media likes counter and change icon
+    likesCounterContainer.textContent = likesCounter + 1;
+    likesCounterIcon.classList.remove("far");
+    likesCounterIcon.classList.add("fas");
+    // add a like to the global likes counter
+    totalLikesCounterContainer.textContent = totalLikesCounter + 1;
+  } else if (likesCounterIcon.classList.contains("fas")) {
+    // remove a like to the media likes counter and change icon
+    likesCounterContainer.textContent = likesCounter - 1;
+    likesCounterIcon.classList.remove("fas");
+    likesCounterIcon.classList.add("far");
+    // remove a like to the global likes counter
+    totalLikesCounterContainer.textContent = totalLikesCounter - 1;
+  }
+}
+
+/**
  * @function init
  * run showMedia and showInfo functions
  */
 async function init() {
-  // get the photographer id to pass it as a paramater to other functions
+  // get the photographer id to pass it as a parameter to other functions
   const url = new URL(document.location);
   const searchParams = url.searchParams;
   const userId = parseInt(searchParams.get("id"));
