@@ -12,10 +12,11 @@ class Media {
    * @name createMedia
    * @returns a media component
    */
-  createMedia() {
-    const mediaSrc = `assets/medias/${this.photographerId}/${this.media}`;
-    return `
-    <article>
+  
+  createMedia(index, folderName) {
+    const mediaSrc = `assets/medias/${folderName}/${this.media}`;
+    const article = document.createElement("article");
+    article.innerHTML = `
       ${
         // if the media is an image, return an image element, else return a video element
         this.media.includes(".jpg", ".png", ".gif", ".webp")
@@ -29,7 +30,10 @@ class Media {
           <img src='assets/icons/likes.png' alt='likes'>
         </div>
       </div>
-    </article>
+ 
     `;
+    // add the click event listener to launch the lightbox and show the clicked media
+    article.addEventListener("click", () => setUpLightbox.openLightbox(index));
+    return article;
   }
 }

@@ -1,5 +1,12 @@
 #contact_modal {
     display: none;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
 }
 
 .photograph-header {
@@ -66,9 +73,14 @@
     grid-row-gap: 30px;
 }
 
+.photograph-medias article {
+    cursor: pointer;
+}
+
 .photograph-medias article .media-item {
     width: 100%;
     height: 300px;
+    aspect-ratio: 7/6;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -97,10 +109,9 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    max-width: 670px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     padding: 35px;
     margin: auto;
@@ -108,7 +119,10 @@
 
 .modal header {
     justify-content: space-between;
+    align-items: self-start;
     width: 100%;
+    height: initial;
+    margin-bottom: 20px;
 }
 
 .modal header img {
@@ -118,7 +132,8 @@
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    line-height: 1;
+    margin: 0;
 }
 
 form {
@@ -138,14 +153,24 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
-form input {
+form input, form textarea {
     width: 100%;
     height: 68px;
     border: none;
     border-radius: 5px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 24px;
+}
+
+form textarea {
+    min-height: 170px;
+}
+
+form .contact_button {
+    font-size: 18px;
+    margin-top: 25px;
 }
 
 .sticky {

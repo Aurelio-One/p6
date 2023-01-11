@@ -1,4 +1,4 @@
-.carousel {
+.lightbox {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -8,13 +8,13 @@
     --current-slide: 0;
     display: none;
 }
-.carousel .carousel-buttons > img {
+.lightbox .lightbox-buttons > img {
     position: absolute;
     right: 0;
     cursor: pointer;
 }
 
-.carousel-button {
+.lightbox-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -22,21 +22,20 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    margin: 0 130px;
 }
 
-.carousel-button.carousel-button_close {
+.lightbox-button.lightbox-button_close {
     right: 0;
     top: 80px;
 }
 
-.carousel-button_next {
+.lightbox-button_next {
     right: 0;
 }
 
 .slides {
     display: flex;
-    transition: transform 0.5s;
-    transform: translateX(calc(-100% * var(--current-slide)));
     height: 100%;
 }
 
@@ -45,7 +44,7 @@
     position: relative;
 }
 
-.slide img, .slide video {
+.slides img, .slides video {
     width: 1050px;
     height: 900px;
     object-fit: cover;
@@ -65,11 +64,4 @@
     position: absolute;
     left: 50%;
     bottom: 50px;
-}
-
-@media screen and (min-width: 768px) {
-    .carousel-button {
-        font-size: 2rem;
-        margin: 0 130px;
-    }
 }

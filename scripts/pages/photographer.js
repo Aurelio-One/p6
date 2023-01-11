@@ -1,5 +1,6 @@
 /**
- * @function getInfos {
+ * @function getInfos
+ * @param userId
  * get the data of a photographer based on the URL param 'id'
  */
 async function getInfos(userId) {
@@ -14,12 +15,14 @@ async function getInfos(userId) {
 }
 
 /**
- * @function showInfo {
+ * @function showInfo
+ * @param userId
  * show the photographer infos when the data is ready
  */
 async function showInfo(userId) {
   const info = await getInfos(userId);
   const { name, city, country, tagline, portrait } = info;
+  
   // get elements
   const modalHeaderTitle = document.querySelector(".modal header h2");
   const container = document.querySelector(".photograph-header > div");
@@ -43,7 +46,8 @@ async function showInfo(userId) {
 }
 
 /**
- * @function getMedias {
+ * @function getMedias
+ * @param userId
  * get the data of all medias of a photographer based on the photographerId key
  */
 async function getMedias(userId) {
@@ -58,38 +62,52 @@ async function getMedias(userId) {
 }
 
 /**
- * @function displayMedias {
+ * @function getFolderName
+ * @param userId
+ * get the name of one photographer's images folder
+ */
+async function getFolderName(userId) {
+  const infos = await getInfos(userId);
+  const { name } = infos;
+  return name.split(" ")[0].replace("-", " ");
+}
+
+/**
+ * @function displayMedias
  * @param medias
  * display the medias of the photographer using the mediaFactory function
  */
-async function displayMedias(medias) {
+async function displayMedias(medias, userId) {
   const mediaSection = document.querySelector(".photograph-medias");
-  medias.forEach((media) => {
-  const newMedia = new Media(
-    media.id,
-    media.photographerId,
-    media.title,
-    media.image ? media.image : media.video,
-    media.likes,
-    media.date,
-    media.price
-    )
-    mediaSection.innerHTML += newMedia.createMedia();
+  const folderName = await getFolderName(userId);
+  medias.forEach((media, index) => {
+    const newMedia = new Media(
+      media.id,
+      media.photographerId,
+      media.title,
+      media.image ? media.image : media.video,
+      media.likes,
+      media.date,
+      media.price
+    );
+    mediaSection.appendChild(newMedia.createMedia(index, folderName));
   });
 }
 
-
 /**
- * @function showMedia {
+ * @function showMedia
+ * @param userId
  * show the photographer medias when the data is ready
  */
 async function showMedia(userId) {
   const medias = await getMedias(userId);
-  displayMedias(medias);
+  const folderName = await getFolderName(userId);
+  displayMedias(medias, userId);
+  setUpLightbox(medias, folderName);
 }
 
 /**
- * @function init {
+ * @function init
  * run showMedia and showInfo functions
  */
 async function init() {

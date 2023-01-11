@@ -1,121 +1,104 @@
-/**
- * @function setUpCarousel
- * @param carousel
- * set up the caroussel
- */
-function setUpCarousel() {
-  // function: return the correct next or previous slide number considering the total numver of slides
-  function modulo(number, mod) {
-    let result = number % mod;
-    if (result < 0) {
-      result += mod;
-    }
-    return result;
-  }
+function setUpLightbox(medias, folderName) {
   // get elements
-  const carousel = document.querySelector('[data-carousel]');
-  const buttonPrevious = carousel.querySelector(
-    '[data-carousel-button-previous]'
+  const lightbox = document.querySelector(".lightbox");
+  const buttonPrevious = lightbox.querySelector(
+    "[data-lightbox-button-previous]"
   );
-  const buttonNext = carousel.querySelector('[data-carousel-button-next]');
-  const slidesContainer = carousel.querySelector(
-    '[data-carousel-slides-container]'
-  );
+  const buttonNext = lightbox.querySelector("[data-lightbox-button-next]");
+  const buttonClose = lightbox.querySelector("[data-lightbox-button-close]");
+  const main = document.querySelector("main");
 
-  // carousel state
-  let currentSlide = 0;
-  const numSlides = slidesContainer.children.length;
-
-  // function: next slide
-  function handleNext() {
-    currentSlide = modulo(currentSlide + 1, numSlides);
-    changeSlide(currentSlide);
-  }
-
-  // function: previous slide
-  function handlePrevious() {
-    currentSlide = modulo(currentSlide - 1, numSlides);
-    changeSlide(currentSlide);
-  }
-
-  // function: change slide
-  function changeSlide(slideNumber) {
-    // change current slide visually
-    carousel.style.setProperty('--current-slide', slideNumber);
-
-    // update the currentSlide variable
-    currentSlide = slideNumber;
-
-    // accessibility: hide the previous and next slides and unhide the current slide
-    const previousSlideNumber = modulo(slideNumber - 1, numSlides);
-    const nextSlideNumber = modulo(slideNumber + 1, numSlides);
-    const previousSlide = slidesContainer.children[previousSlideNumber];
-    const currentSlideElement = slidesContainer.children[slideNumber];
-    const nextSlide = slidesContainer.children[nextSlideNumber];
-
-    previousSlide.setAttribute('aria-hidden', true);
-    nextSlide.setAttribute('aria-hidden', true);
-    currentSlideElement.setAttribute('aria-hidden', false);
-  }
-
-  // set up events
-  buttonPrevious.addEventListener('click', handlePrevious);
-  buttonNext.addEventListener('click', handleNext);
-
-  // accesibility : use keyboard keys to navigate though the slider or close it
-  window.addEventListener('keydown', (e) => {
-    if (carousel.getAttribute('aria-hidden') === 'false') {
-      if (e.key === 'ArrowRight') {
-        handleNext();
-      } else if (e.key === 'ArrowLeft') {
-        handlePrevious();
-      } else if (e.key === 'Escape') {
+  // close button event
+  buttonClose.addEventListener("click", closeLightbox);
+  // accessibility: close lightbow with esc key
+  window.addEventListener("keydown", (e) => {
+    if (lightbox.getAttribute("aria-hidden") === "false") {
+      if (e.key === "Escape") {
         closeLightbox();
       }
     }
   });
 
-  // allow to use changeSlide function outside the setUpCarouel function
-  setUpCarousel.changeSlide = changeSlide;
-  setUpCarousel.handleNext = handleNext;
-  setUpCarousel.handlePrevious = handlePrevious;
-}
+  // allow access to the openLightbox function outside of the setUpLightbox function
+  setUpLightbox.openLightbox = openLightbox;
 
-/**
- * @function displayLightbox
- * display the lightbox
- */
-function displayLightbox() {
-  const lightbox = document.querySelector('.carousel');
-  const body = document.querySelector('body');
-  const main = document.querySelector('main');
-  const firstInput = document.querySelector('form input');
-  // display the lightbox
-  lightbox.style.display = 'block';
-  // accessiblity: hide the main content, show the lightbox
-  main.setAttribute('aria-hidden', 'true');
-  lightbox.setAttribute('aria-hidden', 'false');
-  // disable the scrolling of the body
-  body.classList.add('no-scroll');
-  // accessibility: focus the first input
-  firstInput.focus();
-  // handle submission behavior
-  onSubmit();
-}
+  function showSlide(slideNumber) {
+    const mediaTitle = medias[slideNumber].title;
+    const mediaInfos = document.querySelector(
+      ".lightbox .slides .media-infos span"
+    );
+    const slideImg = document.querySelector(".lightbox .slides img");
+    const slideVideo = document.querySelector(".lightbox .slides video");
 
-/**
- * @function closeLightbox {
- * close the lightbox
- */
-function closeLightbox() {
-  const lightbox = document.querySelector('.carousel');
-  const body = document.querySelector('body');
-  const main = document.querySelector('main');
-  // hide the lightbox
-  lightbox.style.display = 'none';
-  // accessiblity: show the main content, hide the lightbox
-  main.setAttribute('aria-hidden', 'false');
-  lightbox.setAttribute('aria-hidden', 'true');
-  // enable the scrolling of the body
-  body.classList.remove('no-scroll');
+    // display the media title
+    mediaInfos.textContent = mediaTitle;
+
+    // display the right media depending on media type
+    if (medias[slideNumber].image) {
+      const mediaSrc = `assets/medias/${folderName}/${medias[slideNumber].image}`;
+      slideVideo.style.display = "none";
+      slideImg.style.display = "block";
+      slideImg.setAttribute("src", mediaSrc);
+      slideImg.setAttribute("alt", mediaTitle);
+    } else if (medias[slideNumber].video) {
+      const mediaSrc = `assets/medias/${folderName}/${medias[slideNumber].video}`;
+      slideVideo.style.display = "block";
+      slideImg.style.display = "none";
+      slideVideo.setAttribute("src", mediaSrc);
+      slideVideo.setAttribute("title", mediaTitle);
+    }
+
+    // event listeners for next and previous slide
+    buttonNext.addEventListener("click", () => showNextSlide(slideNumber));
+    buttonPrevious.addEventListener("click", () =>
+      showPreviousSlide(slideNumber)
+    );
+    // accesibility: use keyboard keys to navigate though the slider
+    window.addEventListener("keydown", (e) => {
+      if (lightbox.getAttribute("aria-hidden") === "false") {
+        if (e.key === "ArrowRight") {
+          showNextSlide(slideNumber);
+        } else if (e.key === "ArrowLeft") {
+          showPreviousSlide(slideNumber);
+        }
+      }
+    });
+  }
+
+  function showNextSlide(slideNumber) {
+    slideNumber === medias.length - 1
+      ? showSlide(0)
+      : showSlide(slideNumber + 1);
+  }
+
+  function showPreviousSlide(slideNumber) {
+    slideNumber === 0
+      ? showSlide(medias.length - 1)
+      : showSlide(slideNumber - 1);
+  }
+
+  /** @function openLightbox
+   * @param slideNumber
+   * open the lightbox and show the right slide
+   */
+  function openLightbox(slideNumber) {
+    // set the right slide
+    showSlide(slideNumber);
+    // accessiblity: hide the main content, show the lightbox
+    main.setAttribute("aria-hidden", "true");
+    lightbox.setAttribute("aria-hidden", "false");
+    // display the lightbox
+    lightbox.style.display = "block";
+  }
+  /**
+   * @function closeLightbox {
+   * close the lightbox
+   */
+  function closeLightbox() {
+    // hide the lightbox
+    lightbox.style.display = "none";
+    // accessiblity: show the main content, hide the lightbox
+    main.setAttribute("aria-hidden", "false");
+    lightbox.setAttribute("aria-hidden", "true");
+  }
 }

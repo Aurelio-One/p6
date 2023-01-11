@@ -38,34 +38,52 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()">
+        <img src="assets/icons/close.svg" aria-label="Close Contact Form" onclick="closeModal()">
       </header>
       <form>
         <div>
-          <label>Prénom</label>
-          <input>
+          <label id="firstname-label" for="firstname">Prénom</label>
+          <input type="text" id="firstname" name="firstname" role="Text field" aria-labelledby="firstname-label">
         </div>
-        <button class="contact_button">Envoyer</button>
+        <div>
+          <label id="lastname-label" for="lastname">Nom</label>
+          <input type="text" id="lastname" name="lastname" role="Text field" aria-labelledby="lastname-label">
+        </div>
+        <div>
+          <label id="email-label" for="email">Email</label>
+          <input type="email" id="email" name="email" role="textbox" aria-labelledby="email-label">
+        </div>
+        <div>
+          <label id="message-label" for="message">Votre message</label>
+          <textarea type="textarea" id="message" name="message" role="textarea"
+            aria-labelledby="message-label"></textarea>
+        </div>
+        <button class="contact_button" aria-label="Send">Envoyer</button>
       </form>
     </div>
   </div>
 
-  <!-- CAROUSEL -->
-  <div class="carousel" role="group" aria-roledescription="carousel" aria-label="image closeup view" aria-hidden="true"
-    data-carousel>
-    <div class="carousel-buttons">
-      <button class="carousel-button carousel-button_close" aria-label="Close dialog" onclick="closeLightbox()">
+  <!-- LIGHTBOX -->
+  <div class="lightbox" role="group" aria-roledescription="lightbox" aria-label="image closeup view" aria-hidden="true"
+    data-lightbox>
+    <div class="lightbox-buttons">
+      <button class="lightbox-button lightbox-button_close" aria-label="Close dialog" data-lightbox-button-close>
         <img src="assets/icons/close-red.svg">
       </button>
-      <button class="carousel-button carousel-button_previous" aria-label="Previous image"
-        data-carousel-button-previous>
+      <button class="lightbox-button lightbox-button_previous" aria-label="Previous image"
+        data-lightbox-button-previous>
         <img src="assets/icons/previous.png" alt="Previous image" height="48">
       </button>
-      <button class="carousel-button carousel-button_next" aria-label="Next image" data-carousel-button-next>
+      <button class="lightbox-button lightbox-button_next" aria-label="Next image" data-lightbox-button-next>
         <img src="assets/icons/next.png" alt="Next image" height="48">
       </button>
     </div>
-    <div class="slides" aria-live="polite" data-carousel-slides-container>
+    <div class="slides" aria-live="polite" data-lightbox-slides-container>
+      <div class="slide">
+        <img class="media-item">
+        <video class="media-item" autoplay loop controls></video>
+        <div class="media-infos"><span></span></div>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="scripts/factories/media.js"></script>

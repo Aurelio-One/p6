@@ -30,12 +30,4 @@ class Photographer {
     </article>
     `;
   }
-
-  /**
-   * @name getFolderName
-   * @returns the photos folder name for each photographer
-   */
-  getFolderName() {
-    return this.name.toLowerCase().replace(" ", "");
-  }
 }
