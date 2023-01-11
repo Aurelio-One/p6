@@ -178,10 +178,15 @@ form .contact_button {
     position: fixed;
     bottom: 0;
     right: 30px;
-    padding: 10px 20px;
+    padding: 0 30px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-radius: 5px 5px 0 0;
     font-size: 24px;
     line-height: 31px;
+}
+
+.sticky .total-likes {
+    margin-right: 60px;
 }

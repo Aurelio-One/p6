@@ -21,8 +21,9 @@ async function getInfos(userId) {
  */
 async function showInfo(userId) {
   const info = await getInfos(userId);
-  const { name, city, country, tagline, portrait } = info;
-  
+  const { name, city, country, tagline, portrait, price } = info;
+  const likesCount = await getLikes(userId);
+
   // get elements
   const modalHeaderTitle = document.querySelector(".modal header h2");
   const container = document.querySelector(".photograph-header > div");
@@ -30,6 +31,10 @@ async function showInfo(userId) {
   const div = document.querySelector(".photograph-header > div > div");
   const span = document.querySelector(".photograph-header > div > span");
   const img = document.querySelector(".photograph-header > img");
+  const likesContainer = document.querySelector(".sticky .total-likes");
+  const priceContainer = document.querySelector(
+    ".sticky .price-container .price"
+  );
 
   // add the name to the modal title
   modalHeaderTitle.textContent += "\n" + name;
@@ -43,6 +48,10 @@ async function showInfo(userId) {
   span.textContent = `${tagline}`;
   img.setAttribute("src", `assets/photographers/${portrait}`);
   img.setAttribute("alt", `Photo de ${name}`);
+
+  // add the total likes number
+  likesContainer.prepend(likesCount);
+  priceContainer.textContent = `${price}€/jour`;
 }
 
 /**
@@ -104,6 +113,20 @@ async function showMedia(userId) {
   const folderName = await getFolderName(userId);
   displayMedias(medias, userId);
   setUpLightbox(medias, folderName);
+}
+
+/**
+ * @function getLikes
+ * @param userId
+ * show the photographer medias when the data is ready
+ */
+async function getLikes(userId) {
+  const medias = await getMedias(userId);
+  const likes = medias.map((media) => {
+    return media.likes;
+  });
+  const totalLikes = likes.reduce((pv, cv) => pv + cv, 0);
+  return totalLikes;
 }
 
 /**

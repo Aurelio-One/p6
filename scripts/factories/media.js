@@ -27,7 +27,7 @@ class Media {
         <span>${this.title}</span>
         <div>
           <span>${this.likes}</span>
-          <img src='assets/icons/likes.png' alt='likes'>
+          <i class="heart far fa-heart" aria-label="likes"></i>
         </div>
       </div>
  
