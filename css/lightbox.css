@@ -9,7 +9,8 @@
     --current-slide: 0;
     display: none;
 }
-.lightbox .lightbox-buttons > img {
+
+.lightbox .lightbox-buttons>img {
     position: absolute;
     right: 0;
     cursor: pointer;
@@ -23,7 +24,7 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin: 0 130px;
+    margin: 0 180px;
 }
 
 .lightbox-button.lightbox-button_close {
@@ -31,6 +32,10 @@
     top: 80px;
 }
 
+.lightbox-button.lightbox-button_close img {
+    width: 42px;
+    height: 42px;
+}
 .lightbox-button_next {
     right: 0;
 }
@@ -47,22 +52,22 @@
 
 .slides img, .slides video {
     width: 1050px;
-    height: 90vh;
+    height: 100%;
+    padding: 60px;
     object-fit: cover;
     transform: translate(-50%, -50%);
     position: relative;
     top: 50%;
     left: 50%;
-    padding: 100px;
-    border-radius: 105px;
+    border-radius: 65px;
 }
 
 .slide .media-infos {
     color: #901C1C;
     font-size: 24px;
-    width: 1050px;
-    transform: translateX(calc(-50% + 100px));
+    width: 930px;
+    transform: translateX(-50%);
     position: absolute;
     left: 50%;
-    bottom: 50px;
+    bottom: 20px;
 }
