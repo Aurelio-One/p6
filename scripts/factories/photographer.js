@@ -25,7 +25,7 @@ class Photographer {
   }
   /**
    * Create a photographer component.
-   * @return {Media} a photographer component.
+   * @return a photographer component.
    */
   createPhotographer() {
     return `

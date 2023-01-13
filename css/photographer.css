@@ -72,7 +72,7 @@
     grid-row-gap: 30px;
 }
 
-.photograph-medias article .media, .photograph-medias article .media-infos i {
+.photograph-medias article .media, .photograph-medias article .media-infos .heart {
     cursor: pointer;
 }
 

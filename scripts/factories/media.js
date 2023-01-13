@@ -36,7 +36,7 @@ class Media {
         // if the media is an image, return an image element, else return a video element
         this.media.includes(".jpg", ".png", ".gif", ".webp")
           ? `<img src='${mediaSrc}' alt='${this.title}' class='media-item'>`
-          : `<video src='${mediaSrc}' title='${this.title}' controls autoplay loop class='media-item'></video>`
+          : `<video src='${mediaSrc}' title='${this.title}' class='media-item'></video>`
       }
       </div>
       <div class='media-infos'>

@@ -170,7 +170,7 @@ function handleLikes(mediaId) {
     `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>span`
   );
   const likesCounterIcon = document.querySelector(
-    `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>i`
+    `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>.heart`
   );
   // get values
   let totalLikesCounter = parseInt(totalLikesCounterContainer.textContent);

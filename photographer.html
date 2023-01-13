@@ -49,29 +49,29 @@
     <div class="photograph-medias"></div>
   </main>
   <!-- CONTACT MODAL -->
-  <div id="contact_modal" role=”dialog” aria-hidden="true">
+  <div id="contact_modal" aria-labelledby="modal-title" aria-hidden="true">
     <div class="modal">
       <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" aria-label="Close Contact Form" alt ="Close Contact Form" onclick="closeModal()">
+        <h2 id="modal-title">Contactez-moi</h2>
+        <img src="assets/icons/close.svg" aria-label="Close Contact Form" alt="Close Contact Form"
+          onclick="closeModal()">
       </header>
       <form>
         <div>
           <label id="firstname-label" for="firstname">Prénom</label>
-          <input type="text" id="firstname" name="firstname" role="Text field" aria-labelledby="firstname-label">
+          <input type="text" id="firstname" name="firstname" aria-label="Firstname">
         </div>
         <div>
           <label id="lastname-label" for="lastname">Nom</label>
-          <input type="text" id="lastname" name="lastname" role="Text field" aria-labelledby="lastname-label">
+          <input type="text" id="lastname" name="lastname" aria-label="Lastname">
         </div>
         <div>
           <label id="email-label" for="email">Email</label>
-          <input type="email" id="email" name="email" role="textbox" aria-labelledby="email-label">
+          <input type="email" id="email" name="email" aria-label="Email">
         </div>
         <div>
           <label id="message-label" for="message">Votre message</label>
-          <textarea type="textarea" id="message" name="message" role="textarea"
-            aria-labelledby="message-label"></textarea>
+          <textarea id="message" name="message" aria-label="Your message"></textarea>
         </div>
         <button class="contact_button" aria-label="Send">Envoyer</button>
       </form>
@@ -113,10 +113,10 @@
     </div>
   </div>
 
-  <script type="text/javascript" src="scripts/factories/media.js"></script>
-  <script type="text/javascript" src="scripts/pages/photographer.js"></script>
-  <script type="text/javascript" src="scripts/utils/contactForm.js"></script>
-  <script type="text/javascript" src="scripts/utils/lightbox.js"></script>
+  <script src="scripts/factories/media.js"></script>
+  <script src="scripts/pages/photographer.js"></script>
+  <script src="scripts/utils/contactForm.js"></script>
+  <script src="scripts/utils/lightbox.js"></script>
   <!-- FONT AWESOME KIT -->
   <script src="https://kit.fontawesome.com/6f34e379e9.js" crossorigin="anonymous"></script>
 </body>
