@@ -31,7 +31,7 @@ class Media {
         <span>${this.title}</span>
         <div>
           <span>${this.likes}</span>
-          <i class="heart far fa-heart" aria-label="likes"></i>
+          <em class="heart far fa-heart" aria-label="likes"></em>
         </div>
       </div>
  

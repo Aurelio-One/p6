@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 
 <head>
   <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@
       <button class="contact_button" onclick="displayModal()">
         Contactez-moi
       </button>
-      <img class="photographer-image">
+      <img class="photographer-image" alt="">
     </div>
     <!-- SORT -->
     <div class="sort">
@@ -53,7 +53,7 @@
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" aria-label="Close Contact Form" onclick="closeModal()">
+        <img src="assets/icons/close.svg" aria-label="Close Contact Form" alt ="Close Contact Form" onclick="closeModal()">
       </header>
       <form>
         <div>
@@ -83,7 +83,7 @@
     data-lightbox>
     <div class="lightbox-buttons">
       <button class="lightbox-button lightbox-button_close" aria-label="Close dialog" data-lightbox-button-close>
-        <img src="assets/icons/close-red.svg">
+        <img src="assets/icons/close-red.svg" alt="Close dialog">
       </button>
       <button class="lightbox-button lightbox-button_previous" aria-label="Previous image"
         data-lightbox-button-previous>
@@ -95,8 +95,8 @@
     </div>
     <div class="slides" aria-live="polite" data-lightbox-slides-container>
       <div class="slide">
-        <img class="media-item">
-        <video class="media-item" autoplay loop controls></video>
+        <img class="media-item" alt="">
+        <video class="media-item" title="" autoplay loop controls></video>
         <div class="media-infos"><span></span></div>
       </div>
     </div>
@@ -105,7 +105,7 @@
   <!-- STICKY LIKES COUNTER AND PRICE -->
   <div class="sticky">
     <div class="total-likes">
-      <i class="fas fa-heart heart heart-global" aria-label="likes"></i>
+      <em class="fas fa-heart heart heart-global" aria-label="likes"></em>
       <span></span>
     </div>
     <div class="price-container">
@@ -114,9 +114,9 @@
   </div>
 
   <script type="text/javascript" src="scripts/factories/media.js"></script>
-  <script type="text/javascript" src="/scripts/pages/photographer.js"></script>
-  <script type="text/javascript" src="/scripts/utils/contactForm.js"></script>
-  <script type="text/javascript" src="/scripts/utils/lightbox.js"></script>
+  <script type="text/javascript" src="scripts/pages/photographer.js"></script>
+  <script type="text/javascript" src="scripts/utils/contactForm.js"></script>
+  <script type="text/javascript" src="scripts/utils/lightbox.js"></script>
   <!-- FONT AWESOME KIT -->
   <script src="https://kit.fontawesome.com/6f34e379e9.js" crossorigin="anonymous"></script>
 </body>
