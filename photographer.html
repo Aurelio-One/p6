@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <title>Fisheye - photographe </title>
+  <title>Fisheye</title>
 </head>
 
 <body>
@@ -30,6 +30,21 @@
       </button>
       <img class="photographer-image">
     </div>
+    <!-- SORT -->
+    <div class="sort">
+      <label for="sort-method">Trier par</label>
+
+      <div class="dropdown">
+        <input class="text-box" type="text" placeholder="..." id="sort-method" readonly>
+        <div class="options">
+          <div class="likes">Popularité</div>
+          <div class="date">Date</div>
+          <div class="title">Titre</div>
+        </div>
+      </div>
+
+    </div>
+
     <!-- PHOTOGRAPHER MEDIAS -->
     <div class="photograph-medias"></div>
   </main>
@@ -97,7 +112,7 @@
       <span class="price"></span>
     </div>
   </div>
-  
+
   <script type="text/javascript" src="scripts/factories/media.js"></script>
   <script type="text/javascript" src="/scripts/pages/photographer.js"></script>
   <script type="text/javascript" src="/scripts/utils/contactForm.js"></script>

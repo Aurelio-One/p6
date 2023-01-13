@@ -88,8 +88,34 @@ async function getFolderName(userId) {
  */
 async function displayMedias(medias, userId) {
   const mediaSection = document.querySelector(".photograph-medias");
+  // get the folder name to pass it to createMedia method as a parameter
   const folderName = await getFolderName(userId);
-  medias.forEach((media, index) => {
+  // get the selected sort method
+  const sortMethod = document.querySelector(".sort").getAttribute("data-sort");
+  let sortedMedias = medias;
+  // sort the medias array according to the sort method set in the DOM
+  if (sortMethod == "byLikes") {
+    sortedMedias = medias.sort((a, b) => b.likes - a.likes);
+  }
+  if (sortMethod == "byDate") {
+    sortedMedias = medias.sort((a, b) => new Date(b.date) - new Date(a.date));
+  }
+  if (sortMethod == "byTitle") {
+    sortedMedias = medias.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
+  // clear the media section before creating media components
+  mediaSection.innerHTML = "";
+  // create media components using the right sort method
+  sortedMedias.forEach((media, index) => {
     const newMedia = new Media(
       media.id,
       media.photographerId,
@@ -167,14 +193,80 @@ function handleLikes(mediaId) {
 }
 
 /**
+ * @function sort
+ * @param method
+ * @param userId
+ * set the sorting method and run showMedia
+ */
+async function sort(method, userId) {
+  let sortState = document.querySelector(".sort");
+  sortState.setAttribute("data-sort", method);
+
+  // display medias
+  showMedia(userId);
+}
+
+/**
  * @function init
- * run showMedia and showInfo functions
+ * set the sorting event listeners and run showMedia and showInfo functions
  */
 async function init() {
   // get the photographer id to pass it as a parameter to other functions
   const url = new URL(document.location);
   const searchParams = url.searchParams;
   const userId = parseInt(searchParams.get("id"));
+
+  // set up event listeners
+  const optionLikes = document.querySelector(".sort .options .likes");
+  const optionDate = document.querySelector(".sort .options .date");
+  const optionTitle = document.querySelector(".sort .options .title");
+  const textBox = document.querySelector(".sort .dropdown .text-box");
+  const dropdown = document.querySelector(".sort .dropdown");
+
+  // show the dropwn menu
+  dropdown.addEventListener("click", () => {
+    dropdown.classList.toggle("active");
+  });
+  // hide the dropdown menu when clicked outside of it
+  window.addEventListener("mouseup", (e) => {
+    if (
+      !e.target.closest("#dropdown") &&
+      dropdown.classList.contains("active")
+    ) {
+      dropdown.classList.remove("active");
+    }
+  });
+  // sort by likes
+  optionLikes.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.remove("active");
+    optionLikes.style.display = "none";
+    optionDate.style.display = "block";
+    optionTitle.style.display = "block";
+    textBox.value = "Popularité";
+    sort("byLikes", userId);
+
+  });
+  // sort by date
+  optionDate.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.remove("active");
+    optionLikes.style.display = "block";
+    optionDate.style.display = "none";
+    optionTitle.style.display = "block";
+    textBox.value = "Date";
+    sort("byDate", userId);
+  });
+  // sort by title
+  optionTitle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.remove("active");
+    optionLikes.style.display = "block";
+    optionDate.style.display = "block";
+    optionTitle.style.display = "none";
+    textBox.value = "Titre";
+    sort("byTitle", userId);
+  });
 
   showInfo(userId);
   showMedia(userId);
