@@ -24,7 +24,6 @@
     justify-self: self-start;
 }
 
-
 .photograph-header .photographer-image {
     height: 200px;
     width: 200px;
@@ -55,7 +54,7 @@
 .contact_button {
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: #FFFFFF;
     padding: 11px;
     width: 170px;
     height: 70px;
@@ -66,14 +65,14 @@
 }
 
 .photograph-medias {
-    margin: 100px;
+    margin: 20px 100px 100px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 95px;
     grid-row-gap: 30px;
 }
 
-.photograph-medias article .media,  .photograph-medias article .media-infos i {
+.photograph-medias article .media, .photograph-medias article .media-infos i {
     cursor: pointer;
 }
 
@@ -184,9 +183,88 @@ form .contact_button {
     align-items: center;
     border-radius: 5px 5px 0 0;
     font-size: 24px;
-    line-height: 31px;
+    width: 375px;
 }
 
-.sticky .total-likes {
-    margin-right: 60px;
+.sort {
+    display: flex;
+    align-items: center;
+    margin: 0 100px;
+    padding: 10px 0;
+}
+
+.sort label {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 23px;
+    margin-right: 25px;
+}
+
+.sort .dropdown {
+    position: relative;
+    width: 170px;
+    height: 55px;
+}
+
+.sort .dropdown::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    z-index: 1000;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    transform: rotate(-45deg);
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.sort .dropdown.active::before {
+    top: 20px;
+    transform: rotate(-225deg);
+}
+
+.sort .dropdown input {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: #911C1C;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.sort .dropdown .text-box::placeholder {
+    color: #FFFFFF;
+}
+
+.sort .dropdown .options {
+    position: absolute;
+    z-index: 1;
+    top: 50px;
+    width: 100%;
+    background: #911C1C;
+    color: #FFFFFF;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+    display: none;
+}
+
+.sort .dropdown.active .options {
+    display: block;
+    padding: 10px 10px 0 10px;
+}
+
+.sort .dropdown .options div {
+    padding: 20px 10px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+    border-top: 1px solid #FFFFFF;
 }

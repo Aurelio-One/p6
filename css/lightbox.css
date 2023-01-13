@@ -1,5 +1,6 @@
 .lightbox {
     position: fixed;
+    z-index: 2;
     top: 0px;
     left: 0px;
     height: 100%;
@@ -46,7 +47,7 @@
 
 .slides img, .slides video {
     width: 1050px;
-    height: 900px;
+    height: 90vh;
     object-fit: cover;
     transform: translate(-50%, -50%);
     position: relative;
