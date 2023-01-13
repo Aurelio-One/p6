@@ -1,3 +1,8 @@
+/** @function setUpLightbox
+ * @param medias
+ * @param folderName
+ * set up lightbox
+ */
 // eslint-disable-next-line no-unused-vars
 function setUpLightbox(medias, folderName) {
   // get elements
@@ -23,6 +28,10 @@ function setUpLightbox(medias, folderName) {
   // allow access to the openLightbox function outside of the setUpLightbox function
   setUpLightbox.openLightbox = openLightbox;
 
+  /** @function showSlide
+   * @param slideNumber
+   * display a media slide in the lightbox
+   */
   function showSlide(slideNumber) {
     const mediaTitle = medias[slideNumber].title;
     const mediaInfos = document.querySelector(
@@ -66,12 +75,20 @@ function setUpLightbox(medias, folderName) {
     });
   }
 
+  /** @function showNextSlide
+   * @param slideNumber
+   * display the next media slide (or the first if the current one is the last)
+   */
   function showNextSlide(slideNumber) {
     slideNumber === medias.length - 1
       ? showSlide(0)
       : showSlide(slideNumber + 1);
   }
 
+  /** @function showPreviousSlide
+   * @param slideNumber
+   * display the previous media slide (or the last if the current one is the first)
+   */
   function showPreviousSlide(slideNumber) {
     slideNumber === 0
       ? showSlide(medias.length - 1)

@@ -1,18 +1,31 @@
+/**
+ * Class representing a photographer.
+ * */
 // eslint-disable-next-line no-unused-vars
 class Photographer {
-  constructor(name, id, city, country, tags, tagline, price, portrait) {
+    /**
+   * Create a photographer.
+   * @param {string} name - The photographer's name.
+   * @param {number} id - The photographer's id.
+   * @param {string} city - The photographer's city.
+   * @param {string} country - The photographer's country.
+   * @param {string} tagline - The photographer's tagline.
+   * @param {number} price - The photographer's price per day.
+   * @param {string} portrait - The photographer's profile image link.
+   *
+   */
+  constructor(name, id, city, country, tagline, price, portrait) {
     this.name = name;
     this.id = id;
     this.city = city;
     this.country = country;
-    this.tags = tags;
     this.tagline = tagline;
     this.price = price;
     this.portrait = portrait;
   }
   /**
-   * @name createPhotographer
-   * @returns a photographer component
+   * Create a photographer component.
+   * @return {Media} a photographer component.
    */
   createPhotographer() {
     return `

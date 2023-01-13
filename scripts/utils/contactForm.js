@@ -1,27 +1,35 @@
+/**
+ * @function displayModal {
+ * display the contact modal
+ */
 // eslint-disable-next-line no-unused-vars
 function displayModal() {
-  const modal = document.getElementById('contact_modal');
-  const main = document.querySelector('main');
-  const firstInput = document.querySelector('form input');
+  const modal = document.getElementById("contact_modal");
+  const main = document.querySelector("main");
+  const firstInput = document.querySelector("form input");
   // display the modal
-  modal.style.display = 'block';
+  modal.style.display = "block";
   // accessiblity: hide the main content, show the modal
-  main.setAttribute('aria-hidden', 'true');
-  modal.setAttribute('aria-hidden', 'false');
+  main.setAttribute("aria-hidden", "true");
+  modal.setAttribute("aria-hidden", "false");
   // accessibility: focus the first input
   firstInput.focus();
   // handle submission behavior
   onSubmit();
 }
 
+/**
+ * @function closeModal {
+ * close the contact modal
+ */
 function closeModal() {
-  const modal = document.getElementById('contact_modal');
-  const main = document.querySelector('main');
+  const modal = document.getElementById("contact_modal");
+  const main = document.querySelector("main");
   // hide the modal
-  modal.style.display = 'none';
+  modal.style.display = "none";
   // accessiblity: show the main content, hide the modal
-  main.setAttribute('aria-hidden', 'false');
-  modal.setAttribute('aria-hidden', 'true');
+  main.setAttribute("aria-hidden", "false");
+  modal.setAttribute("aria-hidden", "true");
 }
 
 /**
@@ -30,17 +38,17 @@ function closeModal() {
  */
 function onSubmit() {
   // when the form is submitted...
-  document.querySelector('form').addEventListener('submit', (e) => {
+  document.querySelector("form").addEventListener("submit", (e) => {
     // stop the regular form behavior
     e.preventDefault();
     // log the inputs value
-    [...document.querySelectorAll('form input')].forEach((field) =>
-      console.log(`${field.getAttribute('name')}: ${field.value}`)
+    [...document.querySelectorAll("form input")].forEach((field) =>
+      console.log(`${field.getAttribute("name")}: ${field.value}`)
     );
     // log the textarea value
     console.log(
-      `${document.querySelector('form textarea').getAttribute('name')}: ${
-        document.querySelector('form textarea').value
+      `${document.querySelector("form textarea").getAttribute("name")}: ${
+        document.querySelector("form textarea").value
       }`
     );
     // close the modal

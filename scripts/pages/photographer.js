@@ -118,7 +118,6 @@ async function displayMedias(medias, userId) {
   sortedMedias.forEach((media, index) => {
     // eslint-disable-next-line no-undef
     const newMedia = new Media(
-      media.id,
       media.photographerId,
       media.title,
       media.image ? media.image : media.video,

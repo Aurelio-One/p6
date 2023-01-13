@@ -1,3 +1,7 @@
+/**
+ * @function getPhotographers {
+ * get the data of all photographers
+ */
 async function getPhotographers() {
   try {
     const res = await fetch("data/photographers.json");
@@ -24,7 +28,6 @@ async function displayPhotographers(photographers) {
       photographer.id,
       photographer.city,
       photographer.country,
-      photographer.tags,
       photographer.tagline,
       photographer.price,
       photographer.portrait
