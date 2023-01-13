@@ -18,6 +18,7 @@ async function displayPhotographers(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
+    // eslint-disable-next-line no-undef
     const newPhotographer = new Photographer(
       photographer.name,
       photographer.id,

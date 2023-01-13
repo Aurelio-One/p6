@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 class Media {
   constructor(id, photographerId, title, media, likes, date, price) {
     this.id = id;
@@ -38,11 +39,13 @@ class Media {
     // add the click event listener to launch the lightbox and show the clicked media
     article
       .querySelector(".media")
+      // eslint-disable-next-line no-undef
       .addEventListener("click", () => setUpLightbox.openLightbox(index));
 
     // add the click event listener to add / remove a like
     const likeButton = article.querySelector(".media-infos .heart");
     likeButton.addEventListener("click", () =>
+      // eslint-disable-next-line no-undef
       handleLikes(index)
     );
     return article;

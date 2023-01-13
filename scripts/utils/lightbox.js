@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function setUpLightbox(medias, folderName) {
   // get elements
   const lightbox = document.querySelector(".lightbox");

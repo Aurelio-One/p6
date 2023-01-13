@@ -211,7 +211,7 @@ form .contact_button {
     position: absolute;
     top: 25px;
     right: 20px;
-    z-index: 1000;
+    z-index: 1;
     width: 8px;
     height: 8px;
     border-top: 2px solid #FFFFFF;

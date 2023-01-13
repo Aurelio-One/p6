@@ -1,6 +1,6 @@
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.getElementById('contact_modal');
-  const body = document.querySelector('body');
   const main = document.querySelector('main');
   const firstInput = document.querySelector('form input');
   // display the modal
@@ -16,7 +16,6 @@ function displayModal() {
 
 function closeModal() {
   const modal = document.getElementById('contact_modal');
-  const body = document.querySelector('body');
   const main = document.querySelector('main');
   // hide the modal
   modal.style.display = 'none';

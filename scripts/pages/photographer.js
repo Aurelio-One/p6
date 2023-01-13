@@ -116,6 +116,7 @@ async function displayMedias(medias, userId) {
   mediaSection.innerHTML = "";
   // create media components using the right sort method
   sortedMedias.forEach((media, index) => {
+    // eslint-disable-next-line no-undef
     const newMedia = new Media(
       media.id,
       media.photographerId,
@@ -138,6 +139,7 @@ async function showMedia(userId) {
   const medias = await getMedias(userId);
   const folderName = await getFolderName(userId);
   displayMedias(medias, userId);
+  // eslint-disable-next-line no-undef
   setUpLightbox(medias, folderName);
 }
 
@@ -159,6 +161,7 @@ async function getLikes(userId) {
  * @function handlLikes
  * show the photographer medias when the data is ready
  */
+// eslint-disable-next-line no-unused-vars
 function handleLikes(mediaId) {
   // get elements
   const totalLikesCounterContainer = document.querySelector(
