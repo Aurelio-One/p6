@@ -36,11 +36,11 @@ class Photographer {
           alt='Photo de ${this.name}' 
           class='photographer-image'
         >
-        <h2 aria-label='Nom: ${this.name}'>${this.name}</h2>
+        <h2>${this.name}</h2>
       </a>
-      <h3 aria-label='Lieu: ${this.city}, ${this.country}'>${this.city}, ${this.country}</h3>
-      <h4 aria-label='Phrase:  ${this.tagline}'>${this.tagline}</h4>
-      <h5 aria-label='Prix: ${this.price}€/jour'>${this.price}€/jour</h5>
+      <h3>${this.city}, ${this.country}</h3>
+      <h4>${this.tagline}</h4>
+      <h5>${this.price}€/jour</h5>
     </article>
     `;
   }

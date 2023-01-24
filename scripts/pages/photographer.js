@@ -40,12 +40,8 @@ async function showInfo(userId) {
   // add the name to the modal title
   modalHeaderTitle.textContent += "\n" + name;
   // add photographer infos and picture to the header
-  container.setAttribute("aria-label", `Informations sur ${name}`);
-  h1.setAttribute("aria-label", `Nom: ${name}`);
   h1.textContent = `${name}`;
-  div.setAttribute("aria-label", `Lieu: ${city}, ${country}`);
   div.textContent = `${city}, ${country}`;
-  span.setAttribute("aria-label", `Phrase: ${tagline}`);
   span.textContent = `${tagline}`;
   img.setAttribute("src", `assets/photographers/${portrait}`);
   img.setAttribute("alt", `Photo de ${name}`);
@@ -170,7 +166,9 @@ function handleLikes(mediaId) {
     `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>span`
   );
   const likesCounterIcon = document.querySelector(
-    `.photograph-medias article:nth-child(${mediaId + 1}) .media-infos>div>.heart`
+    `.photograph-medias article:nth-child(${
+      mediaId + 1
+    }) .media-infos>div>.heart`
   );
   // get values
   let totalLikesCounter = parseInt(totalLikesCounterContainer.textContent);
@@ -241,32 +239,67 @@ async function init() {
   // sort by likes
   optionLikes.addEventListener("click", (e) => {
     e.stopPropagation();
+    // close the dropdown
     dropdown.classList.remove("active");
+    // select and hide the like option
     optionLikes.style.display = "none";
+    optionLikes.setAttribute("aria-hidden", "true");
+    optionLikes.setAttribute("aria-selected", "true");
+    // unselect and show the date option
     optionDate.style.display = "block";
+    optionDate.setAttribute("aria-hidden", "false");
+    optionDate.setAttribute("aria-selected", "false");
     optionTitle.style.display = "block";
-    textBox.value = "Popularité";
+    // unselect and show the title option
+    optionTitle.setAttribute("aria-hidden", "false");
+    optionTitle.setAttribute("aria-selected", "false");
+    // display the selected option
+    textBox.textContent = "Popularité";
+    // run sort function
     sort("byLikes", userId);
-
   });
   // sort by date
   optionDate.addEventListener("click", (e) => {
     e.stopPropagation();
+    // close the dropdown
     dropdown.classList.remove("active");
+    // unselect and show the like option
     optionLikes.style.display = "block";
+    optionLikes.setAttribute("aria-hidden", "false");
+    optionLikes.setAttribute("aria-selected", "false");
+    // select and hide the date option
     optionDate.style.display = "none";
+    optionDate.setAttribute("aria-hidden", "true");
+    optionDate.setAttribute("aria-selected", "true");
+    // unselect and show the title option
     optionTitle.style.display = "block";
-    textBox.value = "Date";
+    optionTitle.setAttribute("aria-hidden", "false");
+    optionTitle.setAttribute("aria-selected", "false");
+    // display the selected option
+    textBox.textContent = "Date";
+    // run sort function
     sort("byDate", userId);
   });
   // sort by title
   optionTitle.addEventListener("click", (e) => {
     e.stopPropagation();
+    // close the dropdown
     dropdown.classList.remove("active");
+    // unselect and show the like option
     optionLikes.style.display = "block";
+    optionLikes.setAttribute("aria-hidden", "false");
+    optionLikes.setAttribute("aria-selected", "false");
+    // unselect and show the date option
     optionDate.style.display = "block";
+    optionDate.setAttribute("aria-hidden", "false");
+    optionDate.setAttribute("aria-selected", "false");
+    // select and hide the title option
     optionTitle.style.display = "none";
-    textBox.value = "Titre";
+    optionTitle.setAttribute("aria-hidden", "true");
+    optionTitle.setAttribute("aria-selected", "true");
+    // display the selected option
+    textBox.textContent = "Titre";
+    // run sort function
     sort("byTitle", userId);
   });
 

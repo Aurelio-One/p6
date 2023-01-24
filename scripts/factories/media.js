@@ -31,21 +31,21 @@ class Media {
     const article = document.createElement("article");
 
     article.innerHTML = `
-    <div class="media">
+    <button class="media">
       ${
         // if the media is an image, return an image element, else return a video element
         this.media.includes(".jpg", ".png", ".gif", ".webp")
-          ? `<img src='${mediaSrc}' alt='${this.title}' class='media-item'>`
-          : `<video src='${mediaSrc}' title='${this.title}' class='media-item'></video>`
+          ? `<img src='${mediaSrc}' alt='${this.title}, closeup view' class='media-item'>`
+          : `<video src='${mediaSrc}' title='${this.title}, closeup view' class='media-item'></video>`
       }
-      </div>
-      <div class='media-infos'>
-        <span>${this.title}</span>
-        <div>
-          <span>${this.likes}</span>
-          <em class="heart far fa-heart" aria-label="likes"></em>
+    </button>
+    <div class='media-infos'>
+      <span>${this.title}</span>
+      <div>
+        <span>${this.likes}</span>
+        <button class="heart far fa-heart" aria-label="likes"></button>
         </div>
-      </div>
+    </div>
  
     `;
     // add the click event listener to launch the lightbox and show the clicked media

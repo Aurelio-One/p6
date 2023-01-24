@@ -6,7 +6,6 @@
     height: 100%;
     width: 100%;
     background: #FFFFFF;
-    --current-slide: 0;
     display: none;
 }
 
