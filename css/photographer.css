@@ -61,22 +61,13 @@
     grid-row-gap: 30px;
 }
 
-.photograph-medias article button {
-    padding: 0;
-    border: 0;
-    background-color: transparent;
-    color: #901C1C;
-    font-size: 24px;
-    cursor: pointer;
-    width: 100%;
-}
-
 .photograph-medias article .media-item {
     width: 100%;
     height: 300px;
     aspect-ratio: 7/6;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .photograph-medias article .media-infos {
@@ -95,8 +86,8 @@
     white-space: nowrap;
 }
 
-.photograph-medias article .media-infos button {
-    width: initial;
+.photograph-medias article .media-infos .heart {
+    cursor: pointer;
 }
 
 .photograph-medias article .media-infos img {
@@ -207,28 +198,34 @@ form .contact_button {
     align-items: center;
     margin: 0 100px;
     padding: 10px 0;
+    position: relative;
 }
 
-.sort label {
+.sort h2 {
     font-weight: 700;
     font-size: 18px;
     line-height: 23px;
     margin-right: 25px;
+    width: 80px;
 }
 
 .sort .dropdown {
-    position: relative;
+    position: absolute;
+    top: 60px;
     width: 170px;
-    height: 55px;
+    left: 105px;
     border: none;
-    background: none;
-    padding: 0;
+    padding: 5px 10px 0;
+    z-index: 1;
+    background: #911C1C;
+    color: #FFFFFF;
+    border-radius: 0 0 5px 5px;
 }
 
 .sort .dropdown::before {
     content: "";
     position: absolute;
-    top: 25px;
+    top: -25px;
     right: 20px;
     z-index: 1;
     width: 8px;
@@ -241,18 +238,17 @@ form .contact_button {
 }
 
 .sort .dropdown.active::before {
-    top: 20px;
+    top: -30px;
     transform: rotate(-225deg);
 }
 
-.sort .dropdown .text-box {
-    width: 100%;
-    height: 100%;
+.sort .dropdown-trigger {
+    width: 170px;
+    height: 55px;
     cursor: pointer;
     background: #911C1C;
     color: #FFFFFF;
     border: none;
-    outline: none;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     padding: 12px 20px;
     border-radius: 5px;
@@ -261,29 +257,22 @@ form .contact_button {
     text-align: left;
 }
 
-.sort .dropdown .options {
-    position: absolute;
-    z-index: 1;
-    top: 50px;
+.sort .dropdown [role="option"] {
     width: 100%;
-    background: #911C1C;
-    color: #FFFFFF;
-    border-radius: 0 0 5px 5px;
-    overflow: hidden;
-    display: none;
-}
-
-.sort .dropdown.active .options {
-    display: block;
-    padding: 10px 10px 0 10px;
-}
-
-.sort .dropdown .options a {
-    display: block;
     text-align: left;
     padding: 20px 10px;
     cursor: pointer;
     font-size: 18px;
+    border: none;
     border-top: 1px solid #FFFFFF;
     color: #FFFFFF;
+    background: transparent;
+}
+
+.sort .dropdown:not(.active) [role="option"] {
+    display: none !important;
+}
+
+.sort .dropdown.active [role="option"] {
+    display: block;
 }

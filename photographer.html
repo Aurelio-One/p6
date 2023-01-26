@@ -14,7 +14,7 @@
 <body>
   <header>
     <a href="index.html">
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Logo">
+      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page">
     </a>
   </header>
   <main id="main">
@@ -28,26 +28,26 @@
       <button class="contact_button" onclick="displayModal()">
         Contactez-moi
       </button>
-      <img class="photographer-image" alt="">
+      <img class="photographer-image" alt="" src="">
     </section>
     <!-- SORT -->
     <section class="sort">
-      <label for="sort-method">Trier par</label>
-      <button id="sort-method" class="dropdown" tabindex="0" role="button" aria-controls="options"
-        aria-haspopup="listbox" aria-label="Order by" aria-expanded="false">
-        <div class="text-box">...</div>
-        <div class="options" role="listbox">
-          <a href="#" class="likes" data-value="likes" aria-selected="false" aria-hidden="false" aria-label="Trier par popularité"
-            role="option">
-            Popularité</a>
-          <a href="#" class="date" data-value="date" aria-selected="false" aria-hidden="false" aria-label="Trier par date"
-            role="option">Date
-          </a>
-          <a href="#" class="title" data-value="title" aria-selected="false" aria-hidden="false" aria-label="Trier par titre"
-            role="option">
-            Titre</a>
+      <h2 id="sort-method-title" aria-hidden="true">Trier par</h2>
+      <div id="sort-method" class="dropdown-trigger" aria-labelledby="sort-method-title" aria-expanded="false"
+        tabindex="0" role="button">...</div>
+      <div class="dropdown" aria-haspopup="listbox" aria-activedescendant="likes-option" role="listbox">
+        <div class="likes" id="likes-option" aria-selected="false" aria-hidden="false" aria-label="Trier par popularité"
+          role="option" tabindex="0">
+          Popularité
         </div>
-      </button>
+        <div class="date" id="date-option" aria-selected="false" aria-hidden="false" aria-label="Trier par date"
+          role="option" tabindex="0">Date
+        </div>
+        <div class="title" id="title-option" aria-selected="false" aria-hidden="false" aria-label="Trier par titre"
+          role="option" tabindex="0">
+          Titre
+        </div>
+      </div>
     </section>
 
     <!-- PHOTOGRAPHER MEDIAS -->
@@ -101,8 +101,8 @@
     </div>
     <div class="slides" aria-live="polite" data-lightbox-slides-container>
       <div class="slide">
-        <img class="media-item" alt="">
-        <video class="media-item" title="" autoplay loop controls></video>
+        <img class="media-item" alt="" src="">
+        <video class="media-item" title="" src="" autoplay loop controls></video>
         <div class="media-infos"><span></span></div>
       </div>
     </div>
@@ -123,7 +123,7 @@
   <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
   <script src="scripts/utils/lightbox.js"></script>
-  
+
   <!-- FONT AWESOME KIT -->
   <script src="https://kit.fontawesome.com/6f34e379e9.js" crossorigin="anonymous"></script>
 </body>

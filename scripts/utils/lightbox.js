@@ -16,7 +16,7 @@ function setUpLightbox(medias, folderName) {
 
   // close button event
   buttonClose.addEventListener("click", closeLightbox);
-  // accessibility: close lightbow with esc key
+  // accessibility: close lightbox with esc key
   window.addEventListener("keydown", (e) => {
     if (lightbox.getAttribute("aria-hidden") === "false") {
       if (e.key === "Escape") {
@@ -49,13 +49,13 @@ function setUpLightbox(medias, folderName) {
       slideVideo.style.display = "none";
       slideImg.style.display = "block";
       slideImg.setAttribute("src", mediaSrc);
-      slideImg.setAttribute("alt", mediaTitle);
+      slideImg.setAttribute("alt", "");
     } else if (medias[slideNumber].video) {
       const mediaSrc = `assets/medias/${folderName}/${medias[slideNumber].video}`;
       slideVideo.style.display = "block";
       slideImg.style.display = "none";
       slideVideo.setAttribute("src", mediaSrc);
-      slideVideo.setAttribute("title", mediaTitle);
+      slideVideo.setAttribute("title", "");
     }
 
     // event listeners for next and previous slide
@@ -111,7 +111,7 @@ function setUpLightbox(medias, folderName) {
     const firstFocusableElement = lightbox.querySelectorAll("button")[0]; // get first element to be focused inside modal
     const focusableContent = lightbox.querySelectorAll("button");
     const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-                    
+
     document.addEventListener("keydown", (e) => {
       let isTabPressed = e.key === "Tab";
       if (!isTabPressed) {

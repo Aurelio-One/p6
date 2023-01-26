@@ -26,7 +26,6 @@ async function showInfo(userId) {
 
   // get elements
   const modalHeaderTitle = document.querySelector(".modal header h2");
-  const container = document.querySelector(".photograph-header > div");
   const h1 = document.querySelector(".photograph-header > div > h1");
   const div = document.querySelector(".photograph-header > div > div");
   const span = document.querySelector(".photograph-header > div > span");
@@ -98,13 +97,7 @@ async function displayMedias(medias, userId) {
   }
   if (sortMethod == "byTitle") {
     sortedMedias = medias.sort((a, b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
-      return 0;
+      return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
     });
   }
 
@@ -217,30 +210,42 @@ async function init() {
   const userId = parseInt(searchParams.get("id"));
 
   // set up event listeners
-  const optionLikes = document.querySelector(".sort .options .likes");
-  const optionDate = document.querySelector(".sort .options .date");
-  const optionTitle = document.querySelector(".sort .options .title");
-  const textBox = document.querySelector(".sort .dropdown .text-box");
+  const optionLikes = document.querySelector(".sort .dropdown .likes");
+  const optionDate = document.querySelector(".sort .dropdown .date");
+  const optionTitle = document.querySelector(".sort .dropdown .title");
+  const dropdownTrigger = document.querySelector(".sort .dropdown-trigger");
   const dropdown = document.querySelector(".sort .dropdown");
 
+  // trigger click when enter is pressed on a focus element
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      document.activeElement.click();
+    }
+  });
+
   // show the dropwn menu
-  dropdown.addEventListener("click", () => {
+  dropdownTrigger.addEventListener("click", () => {
     dropdown.classList.toggle("active");
+    if (dropdownTrigger.getAttribute("aria-expanded") === "true") {
+      dropdownTrigger.setAttribute("aria-expanded", "false");
+    } else {
+      dropdownTrigger.setAttribute("aria-expanded", "true");
+    }
   });
   // hide the dropdown menu when clicked outside of it
   window.addEventListener("mouseup", (e) => {
     if (
-      !e.target.closest("#dropdown") &&
+      !e.target.closest(".dropdown") &&
       dropdown.classList.contains("active")
     ) {
       dropdown.classList.remove("active");
+      dropdownTrigger.setAttribute("aria-expanded", "false");
     }
   });
   // sort by likes
   optionLikes.addEventListener("click", (e) => {
     e.stopPropagation();
-    // close the dropdown
-    dropdown.classList.remove("active");
     // select and hide the like option
     optionLikes.style.display = "none";
     optionLikes.setAttribute("aria-hidden", "true");
@@ -254,15 +259,16 @@ async function init() {
     optionTitle.setAttribute("aria-hidden", "false");
     optionTitle.setAttribute("aria-selected", "false");
     // display the selected option
-    textBox.textContent = "Popularité";
+    dropdownTrigger.textContent = "Popularité";
+    // close the dropdown
+    dropdown.classList.remove("active");
+    dropdownTrigger.setAttribute("aria-expanded", "false");
     // run sort function
     sort("byLikes", userId);
   });
   // sort by date
   optionDate.addEventListener("click", (e) => {
     e.stopPropagation();
-    // close the dropdown
-    dropdown.classList.remove("active");
     // unselect and show the like option
     optionLikes.style.display = "block";
     optionLikes.setAttribute("aria-hidden", "false");
@@ -276,15 +282,16 @@ async function init() {
     optionTitle.setAttribute("aria-hidden", "false");
     optionTitle.setAttribute("aria-selected", "false");
     // display the selected option
-    textBox.textContent = "Date";
+    dropdownTrigger.textContent = "Date";
+    // close the dropdown
+    dropdown.classList.remove("active");
+    dropdownTrigger.setAttribute("aria-expanded", "false");
     // run sort function
     sort("byDate", userId);
   });
   // sort by title
   optionTitle.addEventListener("click", (e) => {
     e.stopPropagation();
-    // close the dropdown
-    dropdown.classList.remove("active");
     // unselect and show the like option
     optionLikes.style.display = "block";
     optionLikes.setAttribute("aria-hidden", "false");
@@ -298,7 +305,10 @@ async function init() {
     optionTitle.setAttribute("aria-hidden", "true");
     optionTitle.setAttribute("aria-selected", "true");
     // display the selected option
-    textBox.textContent = "Titre";
+    dropdownTrigger.textContent = "Titre";
+    // close the dropdown
+    dropdown.classList.remove("active");
+    dropdownTrigger.setAttribute("aria-expanded", "false");
     // run sort function
     sort("byTitle", userId);
   });

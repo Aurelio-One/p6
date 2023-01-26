@@ -33,7 +33,7 @@ class Photographer {
       <a href='photographer.html?id=${this.id}'>
         <img 
           src='assets/photographers/${this.portrait}'
-          alt='Photo de ${this.name}' 
+          alt='' 
           class='photographer-image'
         >
         <h2>${this.name}</h2>

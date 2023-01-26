@@ -29,6 +29,10 @@ h1 {
     margin-left: 100px;
 }
 
+button span {
+    display: block;
+}
+
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
